@@ -18,7 +18,7 @@ excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 # If you also want to hide them from your project manager pane, add
 # the following line to your project's local .tm_properties.
 #
-excludeInBrowser      = "{$excludeInBrowser,log,vendor,tmp,cache}" 
+excludeInBrowser      = "{$excludeInBrowser,log,vendor,tmp,cache}"
 
 # Configure git and hg
 #
@@ -29,8 +29,8 @@ TM_GIT = "/usr/local/git/bin/git"
 #
 tabSize        = 4
 softTabs       = true
-wrapColumn     = 80
-sofWrap        = false
+#wrapColumn     = 80
+softWrap       = false
 showInvisibles = true
 
 # File type specific configuration

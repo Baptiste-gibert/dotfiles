@@ -33,6 +33,8 @@ wrapColumn     = -1
 softWrap       = false
 showInvisibles = true
 
+windowTitle = "$TM_DISPLAYNAME – $TM_DIRECTORY"
+
 # File type specific configuration
 #
 [ text ]

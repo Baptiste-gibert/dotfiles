@@ -29,7 +29,7 @@ TM_GIT = "/usr/local/git/bin/git"
 #
 tabSize        = 4
 softTabs       = true
-#wrapColumn     = 80
+wrapColumn     = -1
 softWrap       = false
 showInvisibles = true
 

@@ -1,0 +1,53 @@
+# Mac OS X
+.DS_Store
+
+# Adobe Files
+*.psd
+
+# Generated files
+*.[oa]
+*.py[co]
+*.rbc
+
+# Python Packages
+*.egg
+*.egg-info
+bin
+build
+dist
+sdist
+eggs
+env
+parts
+var
+develop-eggs
+.installed.cfg
+
+# Virtualenv
+.env
+.Python
+include
+lib
+
+# Pip Installer Log
+pip-log.txt
+
+# Unit test / coverage
+.coverage
+.tox
+
+# Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside

@@ -28,4 +28,4 @@ alias sls='screen -ls'
 # Don't forget about sk function to kill screens.
 
 # Apache
-alias a2='sudo baapachectl'
+alias a2='sudo apachectl'

@@ -11,6 +11,9 @@ export PATH
 # Node modules
 export NODE_PATH="/usr/local/lib/node_modules"
 
+# Get text
+export PATH=/usr/local/Cellar/gettext/0.18.1.1/bin:$PATH
+
 # Set default editor.
 export EDITOR='subl -w'
 
@@ -37,4 +40,7 @@ function parse_git_branch {
 
 
 # Cool characters: ✩ ✪ ⚡
-export PS1='\u:\W $(__git_ps1 "(\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]) ")✩  '
+export PS1='\u:\W $(__git_ps1 "(\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]) ")✩  '# MySQL
+
+# MySQL
+export PATH=$PATH:/usr/local/mysql/bin

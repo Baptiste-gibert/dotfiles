@@ -1,35 +1,47 @@
+# Largely inspired by https://github.com/mathiasbynens/dotfiles
+
 # Add local bin to PATH
 PATH="/usr/local/bin:${PATH}"
 
 # Export the PATH
 export PATH
 
-# Set default editor.
-export EDITOR='subl -w'
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+    [ -r "$file" ] && source "$file"
+done
+unset file
 
-# Source .aliases.sh file
-[[ -s "$HOME/.aliases.sh" ]] && . "$HOME/.aliases.sh"
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
 
-# Source .functions.sh file
-[[ -s "$HOME/.functions.sh" ]] && . "$HOME/.functions.sh"
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
 
-# The following is for a green git prompt of the current branch.
-if [ -f ~/.git_completion.sh ]; then
-  source ~/.git_completion.sh
-fi
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
 
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working
-  directory clean)" ]] && echo ""
-}
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+    shopt -s "$option" 2> /dev/null
+done
 
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/*
-  \(.*\)/[\1$(parse_git_dirty)]/"
-}
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults
 
-# Cool characters: ✩ ✪ ⚡
-#export PS1='\[\e[0:35m⌘\e[m \e[0:36m\w/\e[m \e[0:33m`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m\]'
-#export PS1='\u:\W $(__git_ps1 "(\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]) ")✩  '
-export PS1='\[\e[0:35m⌘\e[m \e[0:36m\w $(__git_ps1 "\[\e[0m\](\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]) ")\e[m\]';
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
+
+# If possible, add tab completion for git commands
+[ -f ~/.git_completion.sh ] && source ~/.git_completion.sh
+
+# If possible, add tab completion for many more commands
+[ -f /etc/bash_completion ] && source /etc/bash_completion

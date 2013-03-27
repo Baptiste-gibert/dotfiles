@@ -1,9 +1,8 @@
 [user]
-	name = Cyril Gravelier
-	email = magiccyril@gmail.com
+	name = Baptiste Gibert
+	email = gibert.b@gmail.com
 [core]
 	editor = subl -w
-	excludesfile = /Users/cgravelier/.gitignore_global
 	quotepath = false
 [color]
     diff = auto
@@ -18,4 +17,4 @@
     changed = blue bold
     untracked = red
 [github]
-    user = magiccyril
+    user = Baptiste-gibert
